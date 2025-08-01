@@ -1,36 +1,36 @@
-// Wait until the DOM is fully loaded
+// Setup Event Listener for Page Load
 document.addEventListener('DOMContentLoaded', () => {
-    // Select DOM elements
+    // Select DOM Elements
     const addButton = document.getElementById('add-task-btn');
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
 
-    // Function to add a task to the list
+    // Create the addTask Function
     function addTask() {
-        // Get and trim input value
+        // Retrieve and trim task input
         const taskText = taskInput.value.trim();
 
-        // Alert if input is empty
+        // Alert if task is empty
         if (taskText === "") {
             alert("Please enter a task.");
             return;
         }
 
-        // Create a new list item (li)
+        // Create list item and set its text
         const li = document.createElement('li');
         li.textContent = taskText;
 
-        // Create a remove button
+        // Create remove button
         const removeBtn = document.createElement('button');
         removeBtn.textContent = "Remove";
-        removeBtn.className = "remove-btn";
+        removeBtn.className = 'remove-btn';
 
-        // Set remove functionality
-        removeBtn.onclick = () => {
+        // Remove task on click
+        removeBtn.onclick = function () {
             taskList.removeChild(li);
         };
 
-        // Append remove button to li, then li to task list
+        // Append button to li, then li to taskList
         li.appendChild(removeBtn);
         taskList.appendChild(li);
 
@@ -38,11 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
         taskInput.value = "";
     }
 
-    // Add task on button click
+    // Attach Event Listeners
     addButton.addEventListener('click', addTask);
 
-    // Add task on Enter key press
-    taskInput.addEventListener('keypress', (event) => {
+    taskInput.addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
             addTask();
         }
